@@ -1,7 +1,7 @@
 export default {
     providers: [
       {
-        domain: "https://coherent-coral-87.clerk.accounts.dev/",
+        domain: "https://well-bee-52.clerk.accounts.dev/",
         applicationID: "convex",
       },
     ]
