@@ -11,6 +11,7 @@ import { Clock, Trash2, User } from "lucide-react";
 import Image from "next/image";
 import toast from "react-hot-toast";
 import StarButton from "@/components/StarButton";
+import moment from "moment";
 
 function SnippetCard({ snippet }: { snippet: Snippet }) {
   const { user } = useUser();
@@ -72,7 +73,7 @@ function SnippetCard({ snippet }: { snippet: Snippet }) {
                   </span>
                   <div className="flex items-center gap-2 text-xs text-gray-500">
                     <Clock className="size-3" />
-                    {new Date(snippet._creationTime).toLocaleDateString()}
+                    {moment(snippet._creationTime).fromNow()}
                   </div>
                 </div>
               </div>

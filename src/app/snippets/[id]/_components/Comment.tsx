@@ -1,6 +1,7 @@
 import { Trash2Icon, UserIcon } from "lucide-react";
 import { Id } from "../../../../../convex/_generated/dataModel";
 import CommentContent from "./CommentContent";
+import moment from "moment";
 
 interface CommentProps {
   comment: {
@@ -27,7 +28,7 @@ function Comment({ comment, currentUserId, isDeleting, onDelete }: CommentProps)
             <div className="min-w-0">
               <span className="block text-[#e1e1e3] font-medium truncate">{comment.userName}</span>
               <span className="block text-sm text-[#808086]">
-                {new Date(comment._creationTime).toLocaleDateString()}
+                {moment(comment._creationTime).fromNow()}
               </span>
             </div>
           </div>
