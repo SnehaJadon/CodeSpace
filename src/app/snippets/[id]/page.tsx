@@ -11,6 +11,7 @@ import { Editor } from "@monaco-editor/react";
 import { defineMonacoThemes, LANGUAGE_CONFIG } from "@/app/(root)/_constants";
 import CopyButton from "./_components/CopyButton";
 import Comments from "./_components/Comments";
+import moment from "moment";
 
 function SnippetDetailPage() {
   const snippetId = useParams().id;
@@ -48,7 +49,7 @@ function SnippetDetailPage() {
                     </div>
                     <div className="flex items-center gap-2 text-[#8b8b8d]">
                       <Clock className="w-4 h-4" />
-                      <span>{new Date(snippet._creationTime).toLocaleDateString()}</span>
+                      <span>{moment(snippet._creationTime).fromNow()}</span>
                     </div>
                     <div className="flex items-center gap-2 text-[#8b8b8d]">
                       <MessageSquare className="w-4 h-4" />

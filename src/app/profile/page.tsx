@@ -13,6 +13,7 @@ import Image from "next/image";
 import Link from "next/link";
 import StarButton from "@/components/StarButton";
 import CodeBlock from "./_components/CodeBlock";
+import moment from "moment";
 
 const TABS = [
   {
@@ -143,7 +144,7 @@ function ProfilePage() {
                               </span>
                               <span className="text-xs text-gray-400">•</span>
                               <span className="text-xs text-gray-400">
-                                {new Date(execution._creationTime).toLocaleString()}
+                                {moment(execution._creationTime).fromNow()}
                               </span>
                             </div>
                             <div className="flex items-center gap-2">
@@ -256,7 +257,7 @@ function ProfilePage() {
                             <div className="flex items-center justify-between text-sm text-gray-400">
                               <div className="flex items-center gap-2">
                                 <Clock className="w-4 h-4" />
-                                <span>{new Date(snippet._creationTime).toLocaleDateString()}</span>
+                                <span>{moment(snippet._creationTime).fromNow()}</span>
                               </div>
                               <ChevronRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
                             </div>
