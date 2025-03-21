@@ -6,13 +6,14 @@ import { useMutation } from "convex/react";
 import { motion } from "framer-motion";
 import { Loader2, Play } from "lucide-react";
 import { api } from "../../../../convex/_generated/api";
+import { useCallback, useEffect } from "react";
 
 function RunButton() {
   const { user } = useUser();
   const { runCode, language, isRunning } = useCodeEditorStore();
   const saveExecution = useMutation(api.codeExecutions.saveExecution);
 
-  const handleRun = async () => {
+  const handleRun = useCallback(async () => {
     await runCode();
     const result = getExecutionResult();
 
@@ -24,7 +25,26 @@ function RunButton() {
         error: result.error || undefined,
       });
     }
-  };
+  }, [runCode, user, language, saveExecution])
+
+  // Handle keypress for the key combo Ctrl + Alt + N
+  useEffect(() => {
+    const handleKeyPress = (event: KeyboardEvent) => {
+      // Check if Ctrl + Alt + N are pressed
+      if (event.ctrlKey && event.altKey && (event.key.toLowerCase() === "n" || event.key.toLowerCase() === "ṇ")) {
+        event.preventDefault();  // Prevent the default behavior of Ctrl + Alt + N
+        handleRun();  // Trigger the run function
+      }
+    };
+
+    // Attach the event listener
+    window.addEventListener("keydown", handleKeyPress);
+
+    // Clean up the event listener on unmount
+    return () => {
+      window.removeEventListener("keydown", handleKeyPress);
+    };
+  }, [handleRun]);
 
   return (
     <motion.button
