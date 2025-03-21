@@ -6,10 +6,11 @@ import { Editor } from "@monaco-editor/react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { RotateCcwIcon, ShareIcon, TypeIcon } from "lucide-react";
-import { useClerk } from "@clerk/nextjs";
+import { SignedIn, useClerk } from "@clerk/nextjs";
 import { EditorPanelSkeleton } from "./EditorPanelSkeleton";
 import useMounted from "@/hooks/useMounted";
 import ShareSnippetDialog from "./ShareSnippetDialog";
+import RunButton from "./RunButton";
 
 function EditorPanel() {
   const clerk = useClerk();
@@ -101,6 +102,9 @@ function EditorPanel() {
               <ShareIcon className="size-4 text-white" />
               <span className="text-sm font-medium text-white ">Share</span>
             </motion.button>
+            <SignedIn>
+              <RunButton />
+            </SignedIn>
           </div>
         </div>
 
